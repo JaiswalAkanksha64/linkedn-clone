@@ -61,30 +61,30 @@ Deploy `build` folder to Netlify
 
 ## Project Structure
 src/
-├── components/
-│   ├── Login/
-│   ├── Header/
-│   ├── Feed/
-│   ├── Profile/
-│   ├── Jobs/
-│   ├── Network/
-│   ├── Notifications/
-│   ├── Messaging/
-│   ├── Events/
-│   ├── Groups/
-│   └── ProtectedRoute.js
-├── pages/
-│   ├── Home.js
-│   ├── ProfilePage.js
-│   ├── JobsPage.js
-│   ├── NetworkPage.js
-│   ├── NotificationsPage.js
-│   ├── MessagingPage.js
-│   ├── EventsPage.js
-│   ├── GroupsPage.js
-│   └── SearchPage.js
-└── firebase/
-└── firebase.js
+├── components/                           
+│   ├── Login/                              
+│   ├── Header/                          
+│   ├── Feed/            
+│   ├── Profile/             
+│   ├── Jobs/                
+│   ├── Network/                     
+│   ├── Notifications/             
+│   ├── Messaging/                 
+│   ├── Events/            
+│   ├── Groups/                 
+│   └── ProtectedRoute.js              
+├── pages/             
+│   ├── Home.js                   
+│   ├── ProfilePage.js             
+│   ├── JobsPage.js            
+│   ├── NetworkPage.js                 
+│   ├── NotificationsPage.js            
+│   ├── MessagingPage.js            
+│   ├── EventsPage.js                
+│   ├── GroupsPage.js               
+│   └── SearchPage.js                 
+└── firebase/                 
+└── firebase.js                   
 
 ---
 
