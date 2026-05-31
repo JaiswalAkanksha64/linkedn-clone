@@ -20,7 +20,8 @@ function Messaging() {
     if (newMessage.trim() === '') return;
     await addDoc(collection(db, 'messages'), {
       text: newMessage,
-      sender: auth.currentUser?.email,
+      senderEmail: auth.currentUser?.email,
+      senderName: auth.currentUser?.displayName || auth.currentUser?.email,
       timestamp: serverTimestamp()
     });
     setNewMessage('');
@@ -30,17 +31,29 @@ function Messaging() {
     if (e.key === 'Enter') handleSend();
   };
 
-  const isMyMessage = (sender) => sender === auth.currentUser?.email;
+  const isMyMessage = (senderEmail) => senderEmail === auth.currentUser?.email;
 
   return (
     <Box sx={{ maxWidth: 700, margin: '20px auto' }}>
-      <Typography variant="h5" fontWeight="bold" sx={{ marginBottom: 2 }}>Messaging</Typography>
+      <Typography variant="h5" fontWeight="bold" sx={{ marginBottom: 2 }}>
+        Messaging
+      </Typography>
 
       <Paper elevation={2} sx={{ borderRadius: 2, overflow: 'hidden' }}>
 
+        {/* Chat Header */}
+        <Box sx={{ padding: 2, backgroundColor: '#0a66c2' }}>
+          <Typography variant="subtitle1" sx={{ color: 'white', fontWeight: 'bold' }}>
+            💬 Community Chat
+          </Typography>
+          <Typography variant="caption" sx={{ color: '#e0e0e0' }}>
+            Connect and chat with your network
+          </Typography>
+        </Box>
+
         {/* Messages Area */}
         <Box sx={{
-          height: 450,
+          height: 420,
           overflowY: 'auto',
           padding: 2,
           backgroundColor: '#f3f2ef',
@@ -57,27 +70,27 @@ function Messaging() {
           {messages.map(msg => (
             <Box key={msg.id} sx={{
               display: 'flex',
-              justifyContent: isMyMessage(msg.sender) ? 'flex-end' : 'flex-start',
+              justifyContent: isMyMessage(msg.senderEmail) ? 'flex-end' : 'flex-start',
               alignItems: 'flex-end',
               gap: 1
             }}>
-              {!isMyMessage(msg.sender) && (
-                <Avatar sx={{ width: 30, height: 30, backgroundColor: '#0a66c2', fontSize: 14 }}>
-                  {msg.sender?.[0]?.toUpperCase()}
+              {!isMyMessage(msg.senderEmail) && (
+                <Avatar sx={{ width: 32, height: 32, backgroundColor: '#0a66c2', fontSize: 14 }}>
+                  {msg.senderName?.[0]?.toUpperCase()}
                 </Avatar>
               )}
 
               <Box sx={{
                 maxWidth: '65%',
-                backgroundColor: isMyMessage(msg.sender) ? '#0a66c2' : 'white',
-                color: isMyMessage(msg.sender) ? 'white' : 'black',
+                backgroundColor: isMyMessage(msg.senderEmail) ? '#0a66c2' : 'white',
+                color: isMyMessage(msg.senderEmail) ? 'white' : 'black',
                 padding: '8px 14px',
-                borderRadius: isMyMessage(msg.sender) ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                borderRadius: isMyMessage(msg.senderEmail) ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                 boxShadow: 1
               }}>
-                {!isMyMessage(msg.sender) && (
-                  <Typography variant="caption" sx={{ color: '#0a66c2', fontWeight: 'bold' }}>
-                    {msg.sender}
+                {!isMyMessage(msg.senderEmail) && (
+                  <Typography variant="caption" sx={{ color: '#0a66c2', fontWeight: 'bold', display: 'block' }}>
+                    {msg.senderName}
                   </Typography>
                 )}
                 <Typography variant="body2">{msg.text}</Typography>
@@ -85,15 +98,16 @@ function Messaging() {
                   opacity: 0.7,
                   fontSize: 10,
                   display: 'block',
-                  textAlign: 'right'
+                  textAlign: 'right',
+                  marginTop: 0.5
                 }}>
                   {msg.timestamp?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </Typography>
               </Box>
 
-              {isMyMessage(msg.sender) && (
-                <Avatar sx={{ width: 30, height: 30, backgroundColor: '#0a66c2', fontSize: 14 }}>
-                  {msg.sender?.[0]?.toUpperCase()}
+              {isMyMessage(msg.senderEmail) && (
+                <Avatar sx={{ width: 32, height: 32, backgroundColor: '#0a66c2', fontSize: 14 }}>
+                  {msg.senderName?.[0]?.toUpperCase()}
                 </Avatar>
               )}
             </Box>

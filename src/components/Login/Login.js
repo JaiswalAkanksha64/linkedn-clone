@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Paper } from '@mui/material';
-import { auth } from '../../firebase/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from 'firebase/auth';
+import { auth, db} from '../../firebase/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { db } from '../../firebase/firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 
@@ -36,6 +35,12 @@ function Login() {
           headline: '',
           location: '',
           uid: userCredential.user.uid
+        });
+      }
+      // Set displayName from Firestore
+      if (userSnap.exists() && userSnap.data().name) {
+        await updateProfile(userCredential.user, {
+          displayName: userSnap.data().name
         });
       }
       navigate('/home');
