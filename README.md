@@ -39,7 +39,7 @@ Unavailability of a Professional Networking Platform for Higher Education Studen
 
 ### Installation
 ```bash
-git clone https://github.com/YOUR_USERNAME/linkedin-clone.git
+git clone https://github.com/JaiswalAkanksha64/linkedin-clone.git
 cd linkedin-clone
 npm install
 npm start
