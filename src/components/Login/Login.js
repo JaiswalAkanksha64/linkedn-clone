@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Typography, Paper } from '@mui/material';
-import { auth, db} from '../../firebase/firebase';
+import { auth, db } from '../../firebase/firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -97,7 +97,10 @@ function Login() {
       backgroundColor: '#f3f2ef'
     }}>
       <Typography variant="h3" sx={{ color: '#0a66c2', fontWeight: 'bold', marginBottom: 3 }}>
-        LinkedIn
+        CampusConnect
+      </Typography>
+      <Typography variant="subtitle1" sx={{ color: 'gray', marginBottom: 2 }}>
+        Connect • Learn • Grow
       </Typography>
 
       <Paper elevation={3} sx={{ padding: 4, width: 350, borderRadius: 2 }}>

@@ -41,7 +41,7 @@ function Header() {
 
         {/* Left - Logo + Search */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="h5" sx={{ color: '#0a66c2', fontWeight: 'bold' }}>in</Typography>
+          <Typography variant="h6" sx={{ color: '#0a66c2', fontWeight: 'bold' }}>CampusConnect</Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: '#eef3f8', borderRadius: 1, padding: '4px 8px' }}>
             <SearchIcon sx={{ color: 'gray', fontSize: 20 }} />
             <InputBase

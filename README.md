@@ -1,4 +1,4 @@
-# Professional Networking Platform
+# CampusConnect - Connect • Learn • Grow
 
 ## Live Demo
 🔗 **https://teal-cobbler-3049f0.netlify.app**
